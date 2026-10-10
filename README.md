@@ -2,7 +2,7 @@
 
 **A podcast you can talk back to.** InteraCast reads an episode aloud, and you can cut in at any moment, just like interrupting a friend. Ask "wait, how many passengers?" and the host stops mid-sentence, answers in a second or two, then picks the story back up exactly where you left it.
 
-<!-- Demo video: add a link or GIF here -->
+▶️ **[Watch the demo video](https://drive.google.com/file/d/1K7tvwWP9LbWSwMqnB2lUo_TuC9a6Qfc-/view?usp=sharing)**: interrupting the host mid-episode, asking questions, and jumping around by voice.
 
 ## What it does
 
