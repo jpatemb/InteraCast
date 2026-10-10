@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>InteraCast</title>
+<style>
+  :root { --bg:#f7f5f0; --fg:#1d1d1f; --muted:#6b6b70; --card:#fff; --line:#e3e0d8; --accent:#c2410c; --now:#fff3e6; --done:#9a9aa0; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#141414; --fg:#ececec; --muted:#9a9aa0; --card:#1e1e1e; --line:#2e2e2e; --accent:#fb923c; --now:#33240f; --done:#6b6b70; } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.5 system-ui, sans-serif; }
+  main { max-width:760px; margin:0 auto; padding:24px 16px 64px; }
+  h1 { font-size:1.4rem; margin:0 0 4px; }
+  .sub { color:var(--muted); margin:0 0 20px; }
+  .controls { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px; }
+  button { font:inherit; padding:10px 16px; border-radius:10px; border:1px solid var(--line); background:var(--card); color:var(--fg); cursor:pointer; }
+  button.primary { background:var(--accent); border-color:var(--accent); color:#fff; }
+  button:disabled { opacity:.5; cursor:default; }
+  .status { display:flex; align-items:center; gap:10px; padding:10px 14px; border-radius:10px; background:var(--card); border:1px solid var(--line); margin-bottom:12px; }
+  .dot { width:10px; height:10px; border-radius:50%; background:var(--muted); flex:none; }
+  .dot.narrating { background:#16a34a; } .dot.listening { background:#dc2626; animation:pulse 1s infinite; }
+  .dot.answering { background:#2563eb; } .dot.checking { background:#d97706; animation:pulse 1s infinite; }
+  @keyframes pulse { 50% { opacity:.3; } }
+  .heard { color:var(--muted); font-style:italic; min-height:1.5em; margin:0 0 12px; }
+  form { display:flex; gap:8px; margin-bottom:20px; }
+  input { flex:1; min-width:0; font:inherit; padding:10px 12px; border-radius:10px; border:1px solid var(--line); background:var(--card); color:var(--fg); }
+  .script p { margin:0; padding:6px 10px; border-radius:8px; color:var(--done); }
+  .script p.todo { color:var(--fg); }
+  #mic.off { border-color:#c0392b; color:#e74c3c; }
+  .script p { cursor:pointer; }
+  .script p:hover { background:var(--now); }
+  .script .time { display:inline-block; min-width:3.2em; color:var(--done); font-variant-numeric:tabular-nums; font-weight:400; font-size:.85em; }
+  .script p.now { background:var(--now); color:var(--fg); font-weight:600; }
+  .qa { margin:4px 0 8px 24px; padding:8px 12px; border-left:3px solid var(--accent); font-size:.95rem; }
+  .qa b { color:var(--accent); }
+  .note { color:var(--muted); font-size:.85rem; margin-top:24px; }
+</style>
+</head>
+<body>
+<main>
+  <h1 id="title">Interactive Podcast</h1>
+  <p class="sub">Press Play, then just start talking whenever you want to cut in. Speakers work with the Deepgram voice; in the fallback mode, wear headphones. Click any line, or say things like “go back to the part about the mayor” or “skip ahead”, to jump around.</p>
+
+  <div class="controls">
+    <button id="play" class="primary">Play</button>
+    <button id="interrupt" disabled>Interrupt (Space)</button>
+    <button id="restart">Restart</button>
+    <button id="mic" title="Turn the mic off so nothing can interrupt">Mic on (M)</button>
+  </div>
+
+  <div class="status"><span id="dot" class="dot"></span><span id="status">Ready</span></div>
+  <p id="heard" class="heard"></p>
+
+  <form id="ask">
+    <input id="question" placeholder="Or type a question and press Enter" autocomplete="off">
+    <button type="submit">Ask</button>
+  </form>
+
+  <div id="script" class="script"></div>
+  <p id="note" class="note"></p>
+</main>
+<script type="module" src="app.js"></script>
+</body>
+</html>

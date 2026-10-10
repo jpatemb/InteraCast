@@ -1,0 +1,15 @@
+{
+  "name": "interacast",
+  "license": "MIT",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Browser prototype: a narrated episode you can interrupt; the narrator answers, then resumes where it left off.",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.132.1",
+    "ws": "^8.22.0"
+  }
+}
